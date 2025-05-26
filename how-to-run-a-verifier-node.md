@@ -6,7 +6,7 @@ ZK verifier nodes are one of the critical roles in Cysic Network. Their job is t
 
 ## Connect to Wallet
 
-1. Go to the Cysic Phase3 [Website](https://testnet-pre.prover.xyz/m): [https://cysic.xyz/zk](https://cysic.xyz/zk)
+1. Go to the Cysic Phase3 [Website](https://cysic.xyz/): [https://cysic.xyz/zk](https://cysic.xyz/zk)
 2.  Join Testnet Phase 3
 
     <figure><img src=".gitbook/assets/00_cysic_home (2).PNG" alt=""><figcaption></figcaption></figure>
@@ -16,12 +16,12 @@ ZK verifier nodes are one of the critical roles in Cysic Network. Their job is t
 
     <figure><img src=".gitbook/assets/02_connect_wallet (3).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/03_connect_wallet (1).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 4.  Sign a message
 
     <figure><img src=".gitbook/assets/04_sign_message (1).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/05_sign_message (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 5.  Enter the invite code
 
     <figure><img src=".gitbook/assets/06_invite_code (1).png" alt=""><figcaption></figcaption></figure>
@@ -29,7 +29,7 @@ ZK verifier nodes are one of the critical roles in Cysic Network. Their job is t
     <figure><img src=".gitbook/assets/07_invite_code (1).png" alt=""><figcaption></figcaption></figure>
 6.  Copy the address from your wallet. It will be used as reward address when starting the verifier.
 
-    <figure><img src=".gitbook/assets/08_invite_code (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ## Running the scripts
 
