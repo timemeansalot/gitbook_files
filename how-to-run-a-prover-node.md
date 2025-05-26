@@ -11,7 +11,7 @@ ZK prover nodes are one of the critical roles in Cysic Network. Their job is to 
 
 ## Connect to Wallet
 
-1. Go to the Cysic Phase3 [Website](https://cysic.xyz/): [https://cysic.xyz/](https://cysic.xyz/)
+1. Go to the Cysic Phase3 [Website](https://cysic.xyz/): [https://cysic.xyz/zk](https://cysic.xyz/zk)
 2.  Join Testnet Phase 3
 
     <figure><img src=".gitbook/assets/00_cysic_home (2).PNG" alt=""><figcaption></figcaption></figure>
