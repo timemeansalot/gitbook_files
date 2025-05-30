@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # How to Run a Validator node
 
 
