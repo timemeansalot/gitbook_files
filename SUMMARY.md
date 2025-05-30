@@ -11,4 +11,4 @@
 * [How to Run a Prover Node](how-to-run-a-prover-node.md)
 * [How to Run a Verifier Node](how-to-run-a-verifier-node.md)
 * [FAQs & Common Issues/Solutions](faqs-and-common-issues-solutions.md)
-* [Validator](validator.md)
+* [How to Run a Validator node](how-to-run-a-validator-node.md)
