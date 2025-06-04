@@ -14,39 +14,39 @@ ZK prover nodes are one of the critical roles in Cysic Network. Their job is to 
 1. Go to the Cysic Phase3 [Website](https://cysic.xyz/): [https://cysic.xyz/zk](https://cysic.xyz/zk)
 2.  Join Testnet Phase 3
 
-    <figure><img src=".gitbook/assets/00_cysic_home (2).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/00_cysic_home (2).PNG" alt=""><figcaption></figcaption></figure>
 3.  Connect to your wallet
 
-    <figure><img src=".gitbook/assets/01_connect_wallet (2).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/01_connect_wallet (2).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/02_connect_wallet (3).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/02_connect_wallet (3).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 4.  Sign a message
 
-    <figure><img src=".gitbook/assets/04_sign_message (1).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/04_sign_message (1).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 5.  Enter the invite code
 
-    <figure><img src=".gitbook/assets/06_invite_code (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/06_invite_code (1).png" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/07_invite_code (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/07_invite_code (1).png" alt=""><figcaption></figcaption></figure>
 6.  Copy the address from your wallet. It will be used as reward address when starting the verifier.
 
-    <figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ## Get Free RPC endpoint used by eth proof
 
 1.  Go the [Alchemy](https://www.alchemy.com/) website to register a free RPC endpoint, sign in or register
 
-    <figure><img src=".gitbook/assets/09_rpc (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/09_rpc (2).png" alt=""><figcaption></figcaption></figure>
 2.  Create a new app
 
-    <div><figure><img src=".gitbook/assets/10_rpc (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/11_rpc (2).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/12_rpc (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/13_rpc (1).png" alt=""><figcaption></figcaption></figure></div>
+    <div><figure><img src="../.gitbook/assets/10_rpc (1).png" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/11_rpc (2).png" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/12_rpc (1).png" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/13_rpc (1).png" alt=""><figcaption></figcaption></figure></div>
 3.  Got the RPC URL：copy the url
 
-    <figure><img src=".gitbook/assets/14_rpc (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/14_rpc (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Running the scripts
 
@@ -76,7 +76,7 @@ cd ~/cysic-prover/ && bash start.sh
         curl -L https://github.com/cysic-labs/cysic-phase3/releases/download/v1.0.0/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here Your_RPC_URL
         ```
 
-        ![IMAGE](.gitbook/assets/16_prover_run.png)
+        ![IMAGE](../.gitbook/assets/16_prover_run.png)
     * This script will do the following job:
       1. Download the prover program and library: prover libcysnet\_monitor.so libdarwin\_prover.so & libzkp.so & eth\_dependency.sh
       2. Create the prover config file named config.toml
@@ -84,14 +84,14 @@ cd ~/cysic-prover/ && bash start.sh
 
     > You can go to \~/cysic-prover folder to see all the above contents created successfully after running the script.
 
-    ![IMAGE](.gitbook/assets/17_prover_run.png)
+    ![IMAGE](../.gitbook/assets/17_prover_run.png)
 2.  Finish start the prover program, use the following command in terminal to start the prover program
 
     ```bash
     cd ~/cysic-prover/ && bash start.sh
     ```
 
-    ![IMAGE](.gitbook/assets/18_prover_run.png)
+    ![IMAGE](../.gitbook/assets/18_prover_run.png)
 
 The prover may need some minutes to connect to the chain. When you see output like `send heartbeat to server`, then the prover is running successfully.
 

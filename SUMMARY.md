@@ -1,14 +1,18 @@
 # Table of contents
 
-* [The Cysic Network](README.md)
-
-## Getting Started
-
-* [Run a Prover, Verifier and more](getting-started/quickstart.md)
-
-***
-
-* [How to Run a Prover Node](how-to-run-a-prover-node.md)
-* [How to Run a Verifier Node](how-to-run-a-verifier-node.md)
-* [FAQs & Common Issues/Solutions](faqs-and-common-issues-solutions.md)
-* [How to Run a Validator node](how-to-run-a-validator-node.md)
+* [Cysic Network Architecture](README.md)
+  * [Consensus Mechanism](cysic-network-architecture/consensus-mechanism.md)
+  * [Dual Token Model and Governance](cysic-network-architecture/dual-token-model-and-governance.md)
+* [Service Products](readme/README.md)
+  * [ZK Proof Layer](readme/zk-proof-layer.md)
+  * [AI Swarms Framework](readme/ai-swarms-framework.md)
+  * [Digital Mining Boxes](readme/digital-mining-boxes.md)
+  * [Token Staking](readme/token-staking.md)
+* [Hardware Products](hardware-products/README.md)
+  * [ZK ASIC Products](hardware-products/zk-asic-products.md)
+  * [Crypto Mining Rigs](hardware-products/crypto-mining-rigs.md)
+* [Tutorial Docs](tutorial-docs/README.md)
+  * [How to Run a Prover Node](tutorial-docs/how-to-run-a-prover-node.md)
+  * [How to Run a Verifier Node](tutorial-docs/how-to-run-a-verifier-node.md)
+  * [How to Run a Validator node](tutorial-docs/how-to-run-a-validator-node.md)
+  * [FAQs & Common Issues/Solutions](tutorial-docs/faqs-and-common-issues-solutions.md)

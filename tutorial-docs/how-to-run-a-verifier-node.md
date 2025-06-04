@@ -9,27 +9,27 @@ ZK verifier nodes are one of the critical roles in Cysic Network. Their job is t
 1. Go to the Cysic Phase3 [Website](https://cysic.xyz/): [https://cysic.xyz/zk](https://cysic.xyz/zk)
 2.  Join Testnet Phase 3
 
-    <figure><img src=".gitbook/assets/00_cysic_home (2).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/00_cysic_home (2).PNG" alt=""><figcaption></figcaption></figure>
 3.  Connect to your wallet
 
-    <figure><img src=".gitbook/assets/01_connect_wallet (2).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/01_connect_wallet (2).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/02_connect_wallet (3).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/02_connect_wallet (3).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 4.  Sign a message
 
-    <figure><img src=".gitbook/assets/04_sign_message (1).PNG" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/04_sign_message (1).PNG" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 5.  Enter the invite code
 
-    <figure><img src=".gitbook/assets/06_invite_code (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/06_invite_code (1).png" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/07_invite_code (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/07_invite_code (1).png" alt=""><figcaption></figcaption></figure>
 6.  Copy the address from your wallet. It will be used as reward address when starting the verifier.
 
-    <figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ## Running the scripts
 
@@ -50,12 +50,12 @@ cd ~/cysic-verifier/ && bash start.sh
 
 1.  First start your terminal program on Linux. The shortcut is `Ctrl-Alt-T` on Ubuntu.
 
-    <figure><img src=".gitbook/assets/20_linux.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/20_linux.png" alt=""><figcaption></figcaption></figure>
 
     \
     Or you can search for it in the applications and click on Terminal to start it.
 
-    <figure><img src=".gitbook/assets/21_linux.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/21_linux.png" alt=""><figcaption></figcaption></figure>
 2.  Use the following command in the terminal to download and run the setup script( copy and paste the following command in terminal and press enter to run them). Please replace 0x-Fill-in-your-reward-address-here with your own reward address below.
 
     ```
@@ -71,14 +71,14 @@ cd ~/cysic-verifier/ && bash start.sh
 
     You can go to `~/cysic-verifier` folder to see all the above contents created successfully after running the script.
 
-    <figure><img src=".gitbook/assets/23_linux.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/23_linux.png" alt=""><figcaption></figcaption></figure>
 4. **Finish start the verifier program, use the following command in terminal to start the verifier program**
 
 ```bash
   cd ~/cysic-verifier/ && bash start.sh
 ```
 
-![](<.gitbook/assets/24_linux (1).png>)
+![](<../.gitbook/assets/24_linux (1).png>)
 
 > The verifier may need some minutes to connect to the chain. When you see output like `send heartbeat to server`, then the verifier is running successfully.
 
@@ -102,7 +102,7 @@ cd ~/cysic-verifier/ && bash start.sh
 
 1.  First start your terminal program on MacOS. Search for it in the applications and click on Terminal to start it.
 
-    <figure><img src=".gitbook/assets/25_mac.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/25_mac.png" alt=""><figcaption></figcaption></figure>
 2.  Use the following command in the terminal to download and run the setup script (copy and paste the following command in terminal and press enter to run them). Please replace the 0x-Fill-in-your-reward-address-here with your own reward address.
 
     ```bash
@@ -111,21 +111,21 @@ cd ~/cysic-verifier/ && bash start.sh
     curl -L https://github.com/cysic-labs/cysic-phase3/releases/download/v1.0.0/setup_mac.sh > ~/setup_mac.sh && bash ~/setup_mac.sh 0x-Fill-in-your-reward-address-here
     ```
 
-    ![IMAGE](.gitbook/assets/26_mac.png)
+    ![IMAGE](../.gitbook/assets/26_mac.png)
 3. This script will do the following job:
    * Download the verifier program and library: verifier\_mac & libzkp.dylib & librsp.dylib
    * Create the verifier config file named config.toml
    *   Create script to run the verifier start.sh\
        You can go to \~/cysic-verifier folder to see all the above contents created successfully after running the script.
 
-       <figure><img src=".gitbook/assets/27_mac.png" alt=""><figcaption></figcaption></figure>
+       <figure><img src="../.gitbook/assets/27_mac.png" alt=""><figcaption></figcaption></figure>
 4. **Use the following command in terminal to start the verifier program:**
 
 ```bash
 cd ~/cysic-verifier/ && bash start.sh
 ```
 
-![IMAGE](.gitbook/assets/28_mac.png)
+![IMAGE](../.gitbook/assets/28_mac.png)
 
 > The verifier may need some minutes to connect to the chain. When you see output like `send heartbeat to server`, then the verifier is running successfully.
 
@@ -154,7 +154,7 @@ cd $env:USERPROFILE\cysic-verifier
 
 1.  First start your terminal program on Windows. Search for it in the applications and start Powershell as administrator.
 
-    <figure><img src=".gitbook/assets/30_win.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/30_win.png" alt=""><figcaption></figcaption></figure>
 2.  Use the following command in the terminal to download and run the setup script (copy and paste the following command in Powershell and press enter to run them). Please replace 0x-Fill-in-your-reward-address-here with your own reward address below.
 
     ```bash
@@ -165,16 +165,16 @@ cd $env:USERPROFILE\cysic-verifier
     .\setup_win.ps1 -CLAIM_REWARD_ADDRESS "0x-Fill-in-your-reward-address-here"
     ```
 
-    <figure><img src=".gitbook/assets/31_win.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/31_win.png" alt=""><figcaption></figcaption></figure>
 3. This script will do the following job:
    * Download the verifier program and library: verifier.exe, start.ps1 & zkp.dll
    * Create the verifier config file named config.toml
    *   Update Path variable to add cysic-verifier
 
-       <figure><img src=".gitbook/assets/33_win.png" alt=""><figcaption></figcaption></figure>
+       <figure><img src="../.gitbook/assets/33_win.png" alt=""><figcaption></figcaption></figure>
    *   You can go to `~/cysic-verifier` folder to see all the above contents created successfully after running the script.
 
-       <figure><img src=".gitbook/assets/32_win.png" alt=""><figcaption></figcaption></figure>
+       <figure><img src="../.gitbook/assets/32_win.png" alt=""><figcaption></figcaption></figure>
 4. **Finish start the verifier program, use the following command in terminal to start the verifier program:**
 
 ```bash
@@ -184,7 +184,7 @@ cd $env:USERPROFILE\cysic-verifier
 .\start.ps1
 ```
 
-<figure><img src=".gitbook/assets/34_win.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/34_win.png" alt=""><figcaption></figcaption></figure>
 
 > The verifier may need some minutes to connect to the chain. When you see output like `send heartbeat to server`, then the verifier is running successfully.
 

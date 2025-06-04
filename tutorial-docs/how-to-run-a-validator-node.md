@@ -1,24 +1,10 @@
----
-hidden: true
----
-
 # How to Run a Validator node
+
+**During Testnet Phase III, validators will be admitted in a permissioned way.**
 
 
 
 This guide will help you set up and run a Cysic Network validator node, including system requirements, installation configuration, node startup, private key generation, staking operations, and node monitoring procedures.
-
-### Table of Contents
-
-1. System Requirements
-2. Download Configuration Files
-3. Get Docker Images
-4. Start Node with Docker Compose
-5. Generate Private Keys
-6. Staking Operations to Increase Validator Power
-7. Node Health Monitoring
-8. Common Commands
-9. Troubleshooting
 
 ### System Requirements
 
@@ -36,9 +22,7 @@ This guide will help you set up and run a Cysic Network validator node, includin
 * **Docker Compose**: >= 1.29.0
 * **Git**: Latest version
 
-#### Port Requirements
-
-Ensure the following ports are available:
+#### Port Requirements: Ensure the following ports are available:
 
 * `26657`: Tendermint RPC
 * `26656`: Tendermint P2P
