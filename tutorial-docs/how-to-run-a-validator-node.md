@@ -2,9 +2,7 @@
 
 **During Testnet Phase III, validators will be admitted in a permissioned way.**
 
-
-
-This guide will help you set up and run a Cysic Network validator node, including system requirements, installation configuration, node startup, private key generation, staking operations, and node monitoring procedures.
+This guide will help you set up and run a Cysic Network validator node, including system requirements, installation configuration, node startup, private key generation, staking operations, and node monitoring.
 
 ### System Requirements
 
@@ -12,17 +10,19 @@ This guide will help you set up and run a Cysic Network validator node, includin
 
 * **CPU**: 4 cores (8 cores recommended)
 * **Memory**: 8 GB RAM (16 GB recommended)
-* **Storage**: 500 GB SSD (1TB recommended for long-term operation)
+* **Storage**: 200 GB SSD (500 GB recommended for long-term operation)
 * **Network**: Stable internet connection with P2P communication support
 
 #### Software Requirements
 
-* **Operating System**: Linux (Ubuntu 20.04+ recommended) or macOS
+* **Operating System**: Linux (Ubuntu 20.04+ recommended)
 * **Docker**: >= 20.10.0
 * **Docker Compose**: >= 1.29.0
 * **Git**: Latest version
 
-#### Port Requirements: Ensure the following ports are available:
+#### Port Requirements
+
+Ensure the following ports are available:
 
 * `26657`: Tendermint RPC
 * `26656`: Tendermint P2P
@@ -34,60 +34,45 @@ This guide will help you set up and run a Cysic Network validator node, includin
 
 ### Download Configuration Files
 
-#### 1. Clone the Cysic Network Repository
-
 ```bash
-git clone https://github.com/cysic-tech/cysic-network.git
-cd cysic-network
+# Create data directory
+mkdir -p /data && cd /data
+# Download configuration files
+wget https://statics.prover.xyz/testnet_node.tar.gz
+# Extract configuration files
+tar -zxvf testnet_node.tar.gz
 ```
 
-#### 2. View Available Configurations
+#### Download Data Snapshot
 
 ```bash
-# View pre-configured local network settings
-ls localnet-setup/
-# Output: node0/ node1/ node2/ node3/ gentxs/
+# Download snapshot
+wget https://statics.prover.xyz/data.tar.gz
+# Remove existing data directory
+rm -rf node/cysicmintd/data
+# Extract snapshot to data directory
+tar -zxvf data.tar.gz -C node/cysicmintd
 ```
 
-#### 3. Copy Configuration Template
+### Pull Docker Image
 
 ```bash
-# Create configuration directory for your validator node
-mkdir -p ~/cysic-validator
-cp -r localnet-setup/node0/cysicmintd ~/cysic-validator/
-```
-
-### Get Docker Images
-
-#### 1. Pull Image from Docker Hub
-
-```bash
-# Pull the latest Cysic Network node image
-docker pull cysicnetwork/cysicmintd:latest
-
-# Or build local image
-docker build -t cysicmintd/node .
-```
-
-#### 2. Verify Image
-
-```bash
-docker images | grep cysic
+docker-compose pull
 ```
 
 ### Start Node with Docker Compose
 
 #### 1. Configure Docker Compose
 
-Modify the `docker-compose.yml` file according to your needs. Here's a single node configuration example:
+Modify the `docker-compose.yml` file according to your needs. Here's a single-node configuration example:
 
 ```yaml
 version: "3"
 
 services:
-  cysicmintd-validator:
-    container_name: cysicmintd-validator
-    image: "cysicmintd/node"
+  node:
+    container_name: node
+    image: "ghcr.io/cysic-tech/cysic-network:testnet"
     ports:
       - "26657:26657"  # Tendermint RPC
       - "26656:26656"  # Tendermint P2P
@@ -97,12 +82,12 @@ services:
       - "9090:9090"    # gRPC API
       - "6065:6065"    # Metrics
     environment:
-      - ID=0
+      - ID=xxx
       - LOG=${LOG:-cysicmintd.log}
       - LOGLEVEL=${LOGLEVEL:-info}
       - TRACE=${TRACE:-false}
     volumes:
-      - ~/cysic-validator:/cysicmint:Z
+        - ./node/cysicmintd:/cysicmint
     networks:
       - cysic-network
     restart: unless-stopped
@@ -113,17 +98,19 @@ networks:
     driver: bridge
 ```
 
-#### 2. Start the Node
+#### 2. Start Node
+
+\*\*\* Before starting the node, you need to send the node's egress IP address to the Cysic team for whitelist configuration \*\*\*
 
 ```bash
-# Start the validator node
-docker-compose up -d cysicmintd-validator
+# Start validator node
+docker-compose up -d node
 
 # View node logs
-docker-compose logs -f cysicmintd-validator
+docker-compose logs -f node
 ```
 
-#### 3. Verify Node Running Status
+#### 3. Verify Node Status
 
 ```bash
 # Check node status
@@ -133,142 +120,134 @@ curl http://localhost:26657/status
 curl http://localhost:26657/abci_info
 ```
 
-### Generate Private Keys
+### Generate Private Key
 
-#### 1. Generate Keys Inside Container
+#### 1. Generate Key in Container
 
 ```bash
-# Enter the running container
-docker exec -it cysicmintd-validator bash
+# Enter running container
+docker exec -it node bash
 
 # Generate new validator key
-./cysicmintd keys add validator --keyring-backend test
+./cysicmintd keys add validator-xxx --home ./cysicmint --keyring-backend test
 
-# Generate node ID and validator public key
-./cysicmintd tendermint show-node-id
-./cysicmintd tendermint show-validator
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+rocket athlete cage target walnut behave slow short fire fiscal neither apology reason boy stem lawsuit bird vessel arm among sugar jealous clerk exclude
+
+# Verify generated node ID and validator public key
+./cysicmintd tendermint show-node-id --home ./cysicmint --keyring-backend test
+./cysicmintd tendermint show-validator --home ./cysicmint --keyring-backend test
 ```
 
-#### 2. Backup Private Keys
+#### 2. Backup Private Key
 
 ```bash
 # Export private key (Important: Keep it secure!)
-./cysicmintd keys export validator --keyring-backend test
-
-# Backup seed phrase
-./cysicmintd keys mnemonic
+./cysicmintd keys export validator-xxx --home ./cysicmint --keyring-backend test
 ```
 
-#### 3. Get Validator Addresses
+#### 3. Get Validator Address
 
 ```bash
 # Get validator address
-./cysicmintd keys show validator --keyring-backend test -a
+./cysicmintd keys show validator-xxx --home ./cysicmint --keyring-backend test -a
 
 # Get validator operator address
-./cysicmintd keys show validator --keyring-backend test --bech=val -a
+./cysicmintd keys show validator-xxx --home ./cysicmint --keyring-backend test --bech=val -a
 ```
 
 ### Staking Operations to Increase Validator Power
 
-#### 1. Obtain Tokens
+#### 1. Get Tokens
 
-First, you need to obtain CYS tokens for staking:
+Check balance
 
 ```bash
 # Check account balance
-./cysicmintd query bank balances $(./cysicmintd keys show validator --keyring-backend test -a)
+./cysicmintd query bank balances $(./cysicmintd keys show validator-xxx --home ./cysicmint --keyring-backend test -a)
 ```
+
+\*\*\* Please contact the Cysic team to get testnet staking tokens \*\*\*
 
 #### 2. Create Validator
 
-Use the `stake-as-validator` command to create a validator and perform self-delegation:
+Use the `stake-as-validator` command to create a validator and self-stake:
 
 ```bash
 # Create validator (example parameters)
 ./cysicmintd tx govtoken stake-as-validator \
-    1000000000000000000000 \
-    "My Validator" \
-    "A reliable Cysic validator" \
+    10000000000000000000 \
+    "My Validator-xxx" \
+    "A reliable Cysic validator-xxx" \
     "0.05" \
     "0.20" \
     "0.01" \
     1000000000000000000 \
-    $(./cysicmintd tendermint show-validator) \
-    --from validator \
+    $(./cysicmintd tendermint show-validator --home ./cysicmint) \
+    --from validator-xxx \
+    --home=./cysicmint \
     --keyring-backend test \
-    --chain-id cysic_7878-1 \
+    --chain-id cysicmint_9001-1 \
     --gas auto \
     --gas-adjustment 1.2 \
-    --fees 20000000000000000CYS
+    --gas-prices=300000CYS \
+    --yes
 ```
 
-Parameter explanations:
+Parameter description:
 
-* `1000000000000000000000`: Staking amount (1000 CYS)
+* `10000000000000000000`: Staking amount (10 CYS)
 * `"My Validator"`: Validator name
 * `"A reliable Cysic validator"`: Validator description
 * `"0.05"`: Initial commission rate (5%)
 * `"0.20"`: Maximum commission rate (20%)
 * `"0.01"`: Commission change rate (1%)
-* `1000000000000000000`: Minimum self-delegation (1 CYS)
+* `1000000000000000000`: Minimum self-stake (1 CYS)
 
-#### 3. Delegate Additional Tokens
+#### 3. Delegate More Tokens
 
 ```bash
 # Delegate additional tokens to validator
 ./cysicmintd tx staking delegate \
-    $(./cysicmintd keys show validator --keyring-backend test --bech=val -a) \
-    1000000000000000000000CGT \
-    --from validator \
+    $(./cysicmintd keys show validator-xxx --home ./cysicmint --keyring-backend test --bech=val -a) \
+    10000000000000000000CGT \
+    --from validator-xxx \
+    --home=./cysicmint \
     --keyring-backend test \
-    --chain-id cysic_7878-1 \
+    --chain-id cysicmint_9001-1 \
     --gas auto \
     --gas-adjustment 1.2 \
-    --fees 20000000000000000CYS
+    --gas-prices=300000CYS
 ```
 
 #### 4. View Validator Status
 
 ```bash
 # View validator information
-./cysicmintd query staking validator $(./cysicmintd keys show validator --keyring-backend test --bech=val -a)
+./cysicmintd query staking validator $(./cysicmintd keys show validator-xxx --home ./cysicmint  --keyring-backend test --bech=val -a)
 
 # View validator set
 ./cysicmintd query staking validators
 
 # View delegation information
-./cysicmintd query staking delegations $(./cysicmintd keys show validator --keyring-backend test -a)
+./cysicmintd query staking delegations $(./cysicmintd keys show validator-xxx --home ./cysicmint  --keyring-backend test -a)
 ```
 
 ### Node Health Monitoring
 
-#### 1. Enable Prometheus Monitoring
-
-Add the `--metrics` parameter when starting the node:
-
-```bash
-# Modify start-docker.sh script
-./cysicmintd start --metrics \
-    --home /cysicmint \
-    --log_level $LOGLEVEL \
-    --keyring-backend test \
-    --pruning=nothing \
-    --json-rpc.api eth,txpool,personal,net,debug,web3,miner \
-    --api.enable
-```
-
-#### 2. Monitoring Endpoints
+#### 1. Monitoring Endpoints
 
 * **Node Status**: `http://localhost:26657/status`
 * **Network Information**: `http://localhost:26657/net_info`
 * **Validator Information**: `http://localhost:26657/validators`
 * **Prometheus Metrics**: `http://localhost:6065/debug/metrics/prometheus`
 
-#### 3. Key Monitoring Metrics
+#### 2. Key Monitoring Metrics
 
 ```bash
-# Check node synchronization status
+# Check node sync status
 curl -s http://localhost:26657/status | jq '.result.sync_info'
 
 # Check latest block height
@@ -277,50 +256,8 @@ curl -s http://localhost:26657/status | jq '.result.sync_info.latest_block_heigh
 # Check validator voting power
 curl -s http://localhost:26657/validators | jq '.result.validators[] | select(.address=="YOUR_VALIDATOR_ADDRESS")'
 
-# Check number of connected peers
+# Check number of peer connections
 curl -s http://localhost:26657/net_info | jq '.result.n_peers'
-```
-
-#### 4. Automated Monitoring Script
-
-Create a simple monitoring script:
-
-```bash
-#!/bin/bash
-# monitor.sh
-
-echo "=== Cysic Node Health Check ==="
-echo "Timestamp: $(date)"
-
-# Check container status
-if docker ps | grep -q cysicmintd-validator; then
-    echo "✅ Container is running"
-else
-    echo "❌ Container is not running"
-    exit 1
-fi
-
-# Check synchronization status
-SYNC_INFO=$(curl -s http://localhost:26657/status | jq '.result.sync_info')
-CATCHING_UP=$(echo $SYNC_INFO | jq -r '.catching_up')
-LATEST_HEIGHT=$(echo $SYNC_INFO | jq -r '.latest_block_height')
-
-echo "Block Height: $LATEST_HEIGHT"
-if [ "$CATCHING_UP" = "false" ]; then
-    echo "✅ Node is synchronized"
-else
-    echo "⚠️  Node is still syncing"
-fi
-
-# Check peers
-PEERS=$(curl -s http://localhost:26657/net_info | jq -r '.result.n_peers')
-echo "Connected Peers: $PEERS"
-
-if [ "$PEERS" -gt 0 ]; then
-    echo "✅ Network connectivity OK"
-else
-    echo "❌ No peers connected"
-fi
 ```
 
 ### Common Commands
@@ -332,14 +269,12 @@ fi
 docker-compose down
 
 # Restart node
-docker-compose restart cysicmintd-validator
+docker-compose restart node
 
 # View node logs
-docker-compose logs -f cysicmintd-validator
+docker-compose logs -f node
 
-# Clean data and resync
-docker-compose down
-sudo rm -rf ~/cysic-validator/data
+# Start node
 docker-compose up -d
 ```
 
@@ -365,14 +300,14 @@ docker-compose up -d
     1000000000000000000CGT \
     --from validator \
     --keyring-backend test \
-    --chain-id cysic_7878-1
+    --chain-id cysicmint_9001-1
 
 # Withdraw rewards
 ./cysicmintd tx distribution withdraw-rewards \
     $(./cysicmintd keys show validator --keyring-backend test --bech=val -a) \
     --from validator \
     --keyring-backend test \
-    --chain-id cysic_7878-1
+    --chain-id cysicmint_9001-1
 
 # Withdraw commission
 ./cysicmintd tx distribution withdraw-rewards \
@@ -380,7 +315,7 @@ docker-compose up -d
     --commission \
     --from validator \
     --keyring-backend test \
-    --chain-id cysic_7878-1
+    --chain-id cysicmint_9001-1
 ```
 
 ### Troubleshooting
@@ -390,52 +325,39 @@ docker-compose up -d
 1. **Node Cannot Sync**
    * Check network connection
    * Verify configuration files
-   * Clean data and resync
+   * Clear data and resync
 2. **Validator Not in Active Set**
    * Check if staking amount is sufficient
    * Confirm validator is not jailed
-   * Review staking situation of other validators in the network
-3. **Container Fails to Start**
-   * Check if ports are occupied
+   * Check staking status of other validators in the network
+3. **Container Startup Failure**
+   * Check if ports are in use
    * Verify configuration file paths
-   * Review container logs
+   * Check container logs
 
 #### Log Analysis
 
 ```bash
 # View detailed logs
-docker-compose logs --tail=100 cysicmintd-validator
+docker-compose logs --tail=100 node
 
 # Filter error logs
-docker-compose logs cysicmintd-validator | grep -i error
+docker-compose logs node | grep -i error
 
 # Real-time log monitoring
-docker-compose logs -f cysicmintd-validator | grep -E "(error|failed|panic)"
+docker-compose logs -f node | grep -E "(error|failed|panic)"
 ```
 
 #### Emergency Recovery
 
-If the node encounters problems, use the following steps for recovery:
+If the node encounters issues, follow these steps to recover:
 
 1. Backup important data
 2. Stop the node
 3. Check configuration files
 4. Restart the node
-5. Verify synchronization status
+5. Verify sync status
 
 ***
-
-### Summary
-
-Through this guide, you should be able to:
-
-* Set up a complete Cysic validator node environment
-* Manage nodes using Docker Compose
-* Generate and manage validator keys
-* Execute staking operations to increase validator power
-* Monitor node health status
-* Handle common issues
-
-Running a validator node requires continuous maintenance and monitoring. It's recommended to set up automated monitoring and alerting systems to ensure stable node operation.
 
 For more help, please refer to the official documentation or contact the Cysic community.
