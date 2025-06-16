@@ -100,7 +100,7 @@ networks:
 
 #### 2. Start Node
 
-\*\*\* Before starting the node, you need to send the node's egress IP address to the Cysic team for whitelist configuration \*\*\*
+\*\*\* Before starting the node, you need to send the node's exit IP address to the Cysic team for whitelist configuration \*\*\*
 
 ```bash
 # Start validator node
@@ -110,7 +110,7 @@ docker-compose up -d node
 docker-compose logs -f node
 ```
 
-#### 3. Verify Node Status
+#### 3. Verify Node Running Status
 
 ```bash
 # Check node status
@@ -144,7 +144,7 @@ rocket athlete cage target walnut behave slow short fire fiscal neither apology 
 #### 2. Backup Private Key
 
 ```bash
-# Export private key (Important: Keep it secure!)
+# Export private key (Important: Keep it safe!)
 ./cysicmintd keys export validator-xxx --home ./cysicmint --keyring-backend test
 ```
 
@@ -169,7 +169,7 @@ Check balance
 ./cysicmintd query bank balances $(./cysicmintd keys show validator-xxx --home ./cysicmint --keyring-backend test -a)
 ```
 
-\*\*\* Please contact the Cysic team to get testnet staking tokens \*\*\*
+\*\*\* Please contact the Cysic team to obtain testnet staking tokens \*\*\*
 
 #### 2. Create Validator
 
@@ -177,19 +177,19 @@ Use the `stake-as-validator` command to create a validator and self-stake:
 
 ```bash
 # Create validator (example parameters)
-./cysicmintd tx govtoken stake-as-validator \
-    10000000000000000000 \
-    "My Validator-xxx" \
-    "A reliable Cysic validator-xxx" \
-    "0.05" \
-    "0.20" \
-    "0.01" \
-    1000000000000000000 \
-    $(./cysicmintd tendermint show-validator --home ./cysicmint) \
+./cysicmintd tx staking create-validator \
+    --amount=100000000000000000000CGT \
+    --moniker="james" \
+    --details="james's validator"
+    --chain-id cysicmint_9001-1 \
+    --commission-rate="0.05" \
+    --commission-max-rate="0.20" \
+    --commission-max-change-rate="0.01" \
+    --min-self-delegation=1000000000000000000 \
+    --pubkey=$(./cysicmintd tendermint show-validator --home ./cysicmint) \
     --from validator-xxx \
     --home=./cysicmint \
     --keyring-backend test \
-    --chain-id cysicmint_9001-1 \
     --gas auto \
     --gas-adjustment 1.2 \
     --gas-prices=300000CYS \
@@ -198,13 +198,13 @@ Use the `stake-as-validator` command to create a validator and self-stake:
 
 Parameter description:
 
-* `10000000000000000000`: Staking amount (10 CYS)
+* `10000000000000000000`: Staking amount (10 CGT)
 * `"My Validator"`: Validator name
 * `"A reliable Cysic validator"`: Validator description
 * `"0.05"`: Initial commission rate (5%)
 * `"0.20"`: Maximum commission rate (20%)
 * `"0.01"`: Commission change rate (1%)
-* `1000000000000000000`: Minimum self-stake (1 CYS)
+* `1000000000000000000`: Minimum self-stake (1 CGT)
 
 #### 3. Delegate More Tokens
 
@@ -285,34 +285,26 @@ docker-compose up -d
 ./cysicmintd keys list --keyring-backend test
 
 # Recover key
-./cysicmintd keys add validator --recover --keyring-backend test
+./cysicmintd keys add validator-xxx --recover --keyring-backend test
 
 # Delete key
-./cysicmintd keys delete validator --keyring-backend test
+./cysicmintd keys delete validator-xxx --keyring-backend test
 ```
 
 #### Staking Management
 
 ```bash
-# Undelegate
+# Unbond stake
 ./cysicmintd tx staking unbond \
-    $(./cysicmintd keys show validator --keyring-backend test --bech=val -a) \
+    $(./cysicmintd keys show validator-xxx --keyring-backend test --bech=val -a) \
     1000000000000000000CGT \
     --from validator \
     --keyring-backend test \
     --chain-id cysicmint_9001-1
 
 # Withdraw rewards
-./cysicmintd tx distribution withdraw-rewards \
-    $(./cysicmintd keys show validator --keyring-backend test --bech=val -a) \
-    --from validator \
-    --keyring-backend test \
-    --chain-id cysicmint_9001-1
-
-# Withdraw commission
-./cysicmintd tx distribution withdraw-rewards \
-    $(./cysicmintd keys show validator --keyring-backend test --bech=val -a) \
-    --commission \
+./cysicmintd tx distribution withdraw-all-rewards \
+    $(./cysicmintd keys show validator-xxx --keyring-backend test --bech=val -a) \
     --from validator \
     --keyring-backend test \
     --chain-id cysicmint_9001-1
@@ -331,7 +323,7 @@ docker-compose up -d
    * Confirm validator is not jailed
    * Check staking status of other validators in the network
 3. **Container Startup Failure**
-   * Check if ports are in use
+   * Check if ports are occupied
    * Verify configuration file paths
    * Check container logs
 
