@@ -8,7 +8,7 @@ The consensus mechanism of the Cysic Network is based on the CometBFT algorithm.
 
 If enough pre-commit votes are received, the block is committed, and the transactions within it are finalized. The consensus algorithm uses voting rounds and timeouts to ensure progress is made in the event of network delays or failures. Validators vote on blocks, and if a round fails (due to network partitions or Byzantine behavior), the process continues with a new round and a different proposer. Once a block is committed, it is final and cannot be reverted. This differs from traditional Proof of Work (PoW) systems, where finality is probabilistic, and there is always a chance of chain reorganization. CometBFT is highly secure and guarantees consensus as long as more than two-thirds of the validators are honest.
 
-The consensus process relies on a set of validators responsible for proposing and validating new blocks. Validators are selected based on a staking mechanism, where nodes with more stake (tokens) have a higher probability of being chosen as proposers.&#x20;
+The consensus process reley on a set of validators responsible for proposing and validating new blocks. Validators are selected based on a staking mechanism, where nodes with more stake (tokens) have a higher probability of being chosen as proposers.&#x20;
 
 
 
