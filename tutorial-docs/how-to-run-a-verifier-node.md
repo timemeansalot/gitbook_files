@@ -141,7 +141,7 @@ Open Windows Powershell and run the following commands to setup and execute the 
 # replace 0x-Fill-in-your-reward-address-here with your reward address below
 
 cd $env:USERPROFILE
-Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-phase3/releases/download/v1.0.0/setup.ps1" -OutFile "setup_win.ps1"
+Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-phase3/releases/download/v1.0.0/setup_windows.ps1"
 .\setup_win.ps1 -CLAIM_REWARD_ADDRESS "0x-Fill-in-your-reward-address-here"
 
 # run the verifier
