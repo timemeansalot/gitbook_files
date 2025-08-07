@@ -6,6 +6,7 @@
 * [Service Products](readme/README.md)
   * [ZK Proof Layer](readme/zk-proof-layer.md)
   * [AI Agents Swarm Framework](readme/ai-agents-swarm-framework.md)
+  * [Cysic Agent-to-Agent Protocol](readme/cysic-agent-to-agent-protocol.md)
   * [Digital Mining Boxes](readme/digital-mining-boxes.md)
   * [Token Staking](readme/token-staking.md)
 * [Hardware Products](hardware-products/README.md)
