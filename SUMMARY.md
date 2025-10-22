@@ -12,7 +12,6 @@
   * [ZK ASIC Products](hardware-products/zk-asic-products.md)
   * [DogeBox1](hardware-products/dogebox1.md)
 * [Tokenomics](tokenomics/README.md)
-  * [The Token - $CYS](tokenomics/the-token-usdcys.md)
   * [Token Distribution](tokenomics/token-distribution.md)
 * [Roadmap](roadmap.md)
 * [Tutorial Docs](tutorial-docs/README.md)
