@@ -11,8 +11,6 @@
 * [Hardware Products](hardware-products/README.md)
   * [ZK ASIC Products](hardware-products/zk-asic-products.md)
   * [DogeBox1](hardware-products/dogebox1.md)
-* [Tokenomics](tokenomics/README.md)
-  * [Token Distribution](tokenomics/token-distribution.md)
 * [Roadmap](roadmap.md)
 * [Tutorial Docs](tutorial-docs/README.md)
   * [How to Run a Prover Node](tutorial-docs/how-to-run-a-prover-node.md)

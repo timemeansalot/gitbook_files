@@ -66,8 +66,7 @@ cd ~/cysic-verifier/ && bash start.sh
 
     1. Download the verifier program and library: `verifier` & `libdarwin_verifier.so` & libdarwin\_verifier & `librsp.so`
     2. Create the verifier config file named `config.toml`
-    3. Create script to run the verifier `start.sh`\
-
+    3. Create script to run the verifier `start.sh`<br>
 
     You can go to `~/cysic-verifier` folder to see all the above contents created successfully after running the script.
 
