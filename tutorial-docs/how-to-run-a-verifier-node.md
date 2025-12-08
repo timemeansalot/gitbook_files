@@ -58,7 +58,10 @@ Before proceeding, ensure your system meets the following requirements:
 3.  Start the Verifier Node service:
 
     ```powershell
-    cd ~/cysic-verifier && bash start.sh
+    # run the verifier
+    cd $env:USERPROFILE\cysic-verifier
+
+    .\start.ps1
     ```
 
 ### 4. Post-Deployment Configuration
@@ -81,6 +84,8 @@ Upon successful startup of the Verifier Node using the `start.sh` script, you wi
 2025/12/07 10:02:42 received message:  {"code":0,"message":"your current worker address is: 0x70054B7BC1a25D3fff3eE9A95Cb13CD611009D2d","respType":0,"data":null}
 
 2025/12/07 10:02:42 received message:  {"code":0,"message":"","respType":1,"data":"eyJoZWFydGJlYXREdXJhdGlvbiI6MTV9Cg=="}
+
+2025/12/07 10:04:46 received message:  {"code":0,"message":"please Reserve first","respType":0,"data":null}
 ```
 
 #### 4.2 Critical Post-Deployment Steps
