@@ -1,42 +1,23 @@
 # How to Run a Prover Node
 
-## Background
+## 1. Background
 
 ZK prover nodes are one of the critical roles in Cysic Network. Their job is to generate ZK proofs of various kinds, assigned by our partners and obtain Cysic Network credits as the rewards. Operating a prover node requires a solid understanding of DevOps and high-performance hardware.&#x20;
 
-## Hardware Requirements
+## 2. Hardware Requirements
 
-1. Scroll Proof: One Ubuntu server with at least 256GB System RAM, 32 cores CPU, and a GPU with at least 20GB memory.
-2. ETH Proof: One ubuntu server with at least 32GB System RAM, 8 cores CPU and a GPU with at least 16GB memory
+Before proceeding, ensure your system meets the following minimum requirements:
 
-## Connect to Wallet
+* Basic understanding of command-line operations and Linux system administration
+* Hardware specifications:
+  * Random Access Memory (RAM): Minimum 64GB
+  * Storage: Minimum 100GB of available disk space
+  * Graphics Processing Unit (GPU): Minimum 16GB VRAM
+  * Processor: 8 cores CPU with 64-bit architecture
+* Reliable internet connection with stable low-latency access
+* Supported operating system: Linux (Ubuntu 24.04 LTS or compatible distributions recommended)
 
-1. Go to the Cysic Phase3 [Website](https://cysic.xyz/): [https://cysic.xyz/zk](https://cysic.xyz/zk)
-2.  Join Testnet Phase 3
-
-    <figure><img src="../.gitbook/assets/00_cysic_home (2).PNG" alt=""><figcaption></figcaption></figure>
-3.  Connect to your wallet
-
-    <figure><img src="../.gitbook/assets/01_connect_wallet (2).PNG" alt=""><figcaption></figcaption></figure>
-
-    <figure><img src="../.gitbook/assets/02_connect_wallet (3).PNG" alt=""><figcaption></figcaption></figure>
-
-    <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
-4.  Sign a message
-
-    <figure><img src="../.gitbook/assets/04_sign_message (1).PNG" alt=""><figcaption></figcaption></figure>
-
-    <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
-5.  Enter the invite code
-
-    <figure><img src="../.gitbook/assets/06_invite_code (1).png" alt=""><figcaption></figcaption></figure>
-
-    <figure><img src="../.gitbook/assets/07_invite_code (1).png" alt=""><figcaption></figcaption></figure>
-6.  Copy the address from your wallet. It will be used as reward address when starting the verifier.
-
-    <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
-
-## Get Free RPC endpoint used by eth proof
+### 3. Get Free RPC endpoint used by eth proof
 
 1.  Go the [Alchemy](https://www.alchemy.com/) website to register a free RPC endpoint, sign in or register
 
@@ -48,51 +29,107 @@ ZK prover nodes are one of the critical roles in Cysic Network. Their job is to 
 
     <figure><img src="../.gitbook/assets/14_rpc (2).png" alt=""><figcaption></figcaption></figure>
 
-## Running the scripts
+### 4. Deploying the Prover Node
 
-### TL;DR
-
-> Open the terminal and run the following commands to setup and execute the prover program
-
-```bash
-# replace 0x-Fill-in-your-reward-address-here to your reward address below
-
-curl -L https://github.com/cysic-labs/cysic-phase3/releases/download/v1.0.0/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here Your_RPC_URL
-
-cd ~/cysic-prover/ && bash start.sh
-```
-
-### Detailed steps to execute prover on Linux
-
-1.  Download the setup script and run the setup script.
-
-    * First start your terminal program on Linux. The shortcut is Ctrl-Alt-T on Ubuntu.\
-      Or you can search for it in the applications and click on Terminal to start it.
-    *   Use the following command in the terminal to download and run the setup script( copy and paste the following command in terminal and press enter to run them). Please replace 0x-Fill-in-your-reward-address-here with your own reward address below.
-
-        ```bash
-        # replace 0x-Fill-in-your-reward-address-here to your reward address below
-
-        curl -L https://github.com/cysic-labs/cysic-phase3/releases/download/v1.0.0/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here Your_RPC_URL
-        ```
-
-        ![IMAGE](../.gitbook/assets/16_prover_run.png)
-    * This script will do the following job:
-      1. Download the prover program and library: prover libcysnet\_monitor.so libdarwin\_prover.so & libzkp.so & eth\_dependency.sh
-      2. Create the prover config file named config.toml
-      3. Ask the user if you want to setup the eth\_proof software requirements, please choose y to allow the setup process if you want to run eth proof. 4. Create script to run the prover start.sh
-
-    > You can go to \~/cysic-prover folder to see all the above contents created successfully after running the script.
-
-    ![IMAGE](../.gitbook/assets/17_prover_run.png)
-2.  Finish start the prover program, use the following command in terminal to start the prover program
+1. Launch your terminal application on Linux.
+2.  Execute the following command, replacing `0x-Fill-in-your-reward-address-here` with your designated reward address:
 
     ```bash
+    # replace 0x-Fill-in-your-reward-address-here to your reward address below
+
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here Your_RPC_URL
+
     cd ~/cysic-prover/ && bash start.sh
     ```
+3.  Update the bid price field in the config.yaml file. You can adjust your **bid** price according to your machine price and reward policy to maximize your earnings.
 
-    ![IMAGE](../.gitbook/assets/18_prover_run.png)
+    <figure><img src="../.gitbook/assets/image-8 (1).png" alt=""><figcaption></figcaption></figure>
+4.  Start the Prover Node service:
 
-The prover may need some minutes to connect to the chain. When you see output like `send heartbeat to server`, then the prover is running successfully.
+    ```bash
+    cd ~/cysic-Prover && bash start.sh
+    ```
 
-The prover program will create mnemonic files for you. Your submitted address mnemonic file is in: `～/.cysic/assets/` folder, please keep it or you can not run the prover program again.
+### 5. Post-Deployment Configuration
+
+#### 5.1 Prover Node Initialization Output
+
+Upon successful startup of the Prover Node using the `start.sh` script, you will observe terminal output similar to the following:
+
+```bash
+2025/12/08 02:52:27 start setup config
+2025/12/08 02:52:27 start setup service
+2025/12/08 02:52:27 start load secret file from path: ./data/assets
+2025/12/08 02:52:27 file: data/assets/prover_0x179745B18af3975582078aa9B55802F9A9Db9fdD.key not exist, we will create it.
+2025/12/08 02:52:27 your submit address mnemonic file is in: data/assets/prover_0x179745B18af3975582078aa9B55802F9A9Db9fdD.key, please keep it!!!
+2025/12/08 02:52:27 your submit address mnemonic file is in: data/assets/prover_0x179745B18af3975582078aa9B55802F9A9Db9fdD.key, please keep it!!!
+2025/12/08 02:52:27 your submit address mnemonic file is in: data/assets/prover_0x179745B18af3975582078aa9B55802F9A9Db9fdD.key, please keep it!!!
+2025/12/08 02:52:27 send register info to server
+2025/12/08 02:52:27 start setup job
+2025/12/08 02:52:27 start firstTimeGetHWInfo
+2025/12/08 02:52:27 try get prover id from chain
+2025/12/08 02:52:27 received message:  {"code":0,"message":"your current worker address is: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775","respType":0,"data":null}
+
+2025/12/08 02:52:27 error when get prover from chain, prover: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775, err: prover not found
+2025/12/08 02:52:27 error when get prover id, err: prover not found
+2025/12/08 02:52:27 received message:  {"code":0,"message":"","respType":1,"data":"eyJoZWFydGJlYXREdXJhdGlvbiI6MTV9Cg=="}
+
+2025/12/08 02:52:27 received message:  {"code":0,"message":"please Reserve first","respType":0,"data":null}
+
+2025/12/08 02:53:12 send heartbeat to server
+2025/12/08 02:53:13 received message:  {"code":0,"message":"please Reserve first","respType":0,"data":null}
+
+{"code":0,"message":"your current worker address is: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775","respType":0,"data":null}
+
+2025/12/08 02:53:13 error when unmarshal message, err:  invalid character '{' after top-level value
+2025/12/08 02:53:27 try get prover id from chain
+2025/12/08 02:53:28 success got prover info with address: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775
+2025/12/08 02:53:57 send heartbeat to server
+2025/12/08 02:53:58 received message:  {"code":0,"message":"please Reserve first","respType":0,"data":null}
+
+{"code":0,"message":"your current worker address is: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775","respType":0,"data":null}
+```
+
+#### 5.2 Critical Post-Deployment Steps
+
+After starting the Prover Node, complete the following mandatory steps:
+
+1. **Secure Key Management**: Immediately backup all worker key files located in the `data/assets` directory. These keys are essential for node operation and reward claiming; store them in a secure, offline location.
+2. **Node Registration**: Proceed to the Cysic Mainnet Website to reserve CYS tokens for your worker node, enabling it to participate in proof generation tasks.
+
+#### 5.3 Reserving CYS for Your Worker Node
+
+To activate your Prover Node, follow these steps to reserve CYS tokens:
+
+1. **Access the Cysic Mainnet Portal**: Navigate to the official Cysic Mainnet Website: [https://app.cysic.xyz/prover](https://app.cysic.xyz/prover)
+2.  **Authenticate Your Account**: Click the sign-in button and follow the prompts to authenticate.
+
+    <figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+3.  **Connect Your Wallet**: Establish a connection between your wallet and the Cysic Mainnet Portal.
+
+    <figure><img src="../.gitbook/assets/image-1.png" alt=""><figcaption></figcaption></figure>
+
+    <figure><img src="../.gitbook/assets/image-2.png" alt=""><figcaption></figcaption></figure>
+
+    <figure><img src="../.gitbook/assets/image-3.png" alt=""><figcaption></figcaption></figure>
+
+    <figure><img src="../.gitbook/assets/image-4.png" alt=""><figcaption></figcaption></figure>
+
+
+
+4.  **Connect Keplr Wallet**: Select the _CONNECT KEPLR_ button and confirm the connection request.
+
+    <figure><img src="../.gitbook/assets/image-5.png" alt=""><figcaption></figcaption></figure>
+5.  **Reserve CYS Tokens**: Scroll to the RESERVE CYS section, click the _RESERVE_ button, select your worker node from the dropdown menu, and specify the required amount of CYS tokens to reserve.
+
+    <figure><img src="../.gitbook/assets/image-6.png" alt=""><figcaption></figcaption></figure>
+
+    <figure><img src="../.gitbook/assets/image-7.png" alt=""><figcaption></figcaption></figure>
+6.  **Verification of Activation**: After successfully reserving CYS tokens, your Prover Node terminal will display output similar to the following, indicating the node is ready to receive proof generation tasks:
+
+    ```bash
+    2025/12/08 02:58:27 send heartbeat to server
+    2025/12/08 02:58:27 received message:  {"code":0,"message":"your current worker address is: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775","respType":0,"data":null}
+    ```
+
+**Important Note**: Ensure your Prover Node maintains a sufficient balance of CYS tokens to cover transaction fees when submitting proof generation results.
