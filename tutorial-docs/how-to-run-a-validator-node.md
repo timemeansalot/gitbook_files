@@ -123,11 +123,9 @@ rocket athlete cage target walnut behave slow short fire fiscal neither apology 
 ./cysicmintd tendermint show-validator --home ./cysicmint --keyring-backend test
 ```
 
-#### 2. Backup Private Key
+#### 2. Backup Private Key （Optional）
 
-#### 2. Backup Private Key
-
-<sup><mark style="color:red;">**\*\*Important\*\* Please make sure to securely back up the exported validator private key. Safeguarding this information is crucial, as it is the only way to restore access and manage the account. Do not share this key with untrusted individuals.**<mark style="color:red;"></sup>
+<sup><mark style="color:red;">**\*\*Important\*\***<mark style="color:red;"></sup><sup>**&#x20;&#x20;**</sup><sup><mark style="color:red;">**If you perform this operation, please securely save the exported private key**<mark style="color:red;"></sup>
 
 ```bash
 ./cysicmintd keys export validator-xxx --home ./cysicmint --keyring-backend test
