@@ -2,7 +2,9 @@
 
 **During Testnet Phase III, validators will be admitted in a permissioned way.**
 
-This guide will help you set up and run a Cysic Network validator node, including system requirements, installation configuration, node startup, private key generation, staking operations, and node monitoring.
+This guide will help you set up and run a Cysic Network mainnet validator node, including system requirements, installation configuration, node startup, private key generation, staking operations, and node monitoring.
+
+<mark style="color:$warning;">If you need to run a validator node for a testnet network, please globally replace "mainnet" in the document with "testnet", and change all chain-ids from "cysicmint\_4399-1" to "cysicmint\_4398-1".</mark>
 
 ### System Requirements
 
@@ -36,78 +38,60 @@ Ensure the following ports are available:
 
 ```bash
 # Create data directory
-mkdir -p /data && cd /data
-# Download configuration files
-wget https://statics.prover.xyz/testnet_node.tar.gz
-# Extract configuration files
-tar -zxvf testnet_node.tar.gz
+mkdir -p /data/mainent && cd /data
+# Download validator repo
+git clone https://github.com/cysic-labs/validator
+# Copy mainent folder to data
+cp -rf validator/mainent/* /data/mainent
+# Change directory to /data/mainent
+cd /data/mainent
 ```
 
-#### Download Data Snapshot
+
+
+### Install Docker
 
 ```bash
-# Download snapshot
-wget https://statics.prover.xyz/data.tar.gz
-# Remove existing data directory
-rm -rf node/cysicmintd/data
-# Extract snapshot to data directory
-tar -zxvf data.tar.gz -C node/cysicmintd
-```
+sudo apt remove $(dpkg --get-selections docker.io docker compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-### Pull Docker Image
+# Add the repository to Apt sources:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
 
-```bash
-docker-compose pull
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl status docker
 ```
 
 ### Start Node with Docker Compose
 
-#### 1. Configure Docker Compose
-
-Modify the `docker-compose.yml` file according to your needs. Here's a single-node configuration example:
+#### 1. Pull the latest docker image
 
 ```yaml
-version: "3"
-
-services:
-  node:
-    container_name: node
-    image: "ghcr.io/cysic-tech/cysic-network:testnet"
-    ports:
-      - "26657:26657"  # Tendermint RPC
-      - "26656:26656"  # Tendermint P2P
-      - "8545:8545"    # Ethereum JSON-RPC
-      - "8546:8546"    # Ethereum WebSocket  
-      - "1317:1317"    # Cosmos REST API
-      - "9090:9090"    # gRPC API
-      - "6065:6065"    # Metrics
-    environment:
-      - ID=xxx
-      - LOG=${LOG:-cysicmintd.log}
-      - LOGLEVEL=${LOGLEVEL:-info}
-      - TRACE=${TRACE:-false}
-    volumes:
-        - ./node/cysicmintd:/cysicmint
-    networks:
-      - cysic-network
-    restart: unless-stopped
-    entrypoint: "bash start-docker.sh"
-
-networks:
-  cysic-network:
-    driver: bridge
+docker compose pull
 ```
 
 #### 2. Start Node
 
-\*\*\* Before starting the node, you need to send the node's exit IP address to the Cysic team for whitelist configuration \*\*\*
+\*\*\* Before starting the node, you need to send the node's  Elastic IP address to the Cysic team for whitelist configuration \*\*\*
 
 ```bash
 # Start validator node
-docker-compose up -d node
+docker compose up -d node
 
 # View node logs
-docker-compose logs -f node
+docker compose logs -f node
 ```
 
 #### 3. Verify Node Running Status
@@ -124,16 +108,14 @@ curl http://localhost:26657/abci_info
 
 #### 1. Generate Key in Container
 
+#### <sub><mark style="color:red;">\*\*Important\*\* write this mnemonic phrase in a safe place.<mark style="color:red;"></sub> <sub><mark style="color:red;">It is the only way to recover your account if you ever forget your password.<mark style="color:red;"></sub>
+
 ```bash
 # Enter running container
 docker exec -it node bash
 
 # Generate new validator key
 ./cysicmintd keys add validator-xxx --home ./cysicmint --keyring-backend test
-
-**Important** write this mnemonic phrase in a safe place.
-It is the only way to recover your account if you ever forget your password.
-
 rocket athlete cage target walnut behave slow short fire fiscal neither apology reason boy stem lawsuit bird vessel arm among sugar jealous clerk exclude
 
 # Verify generated node ID and validator public key
@@ -143,8 +125,11 @@ rocket athlete cage target walnut behave slow short fire fiscal neither apology 
 
 #### 2. Backup Private Key
 
+#### 2. Backup Private Key
+
+<sup><mark style="color:red;">**\*\*Important\*\* Please make sure to securely back up the exported validator private key. Safeguarding this information is crucial, as it is the only way to restore access and manage the account. Do not share this key with untrusted individuals.**<mark style="color:red;"></sup>
+
 ```bash
-# Export private key (Important: Keep it safe!)
 ./cysicmintd keys export validator-xxx --home ./cysicmint --keyring-backend test
 ```
 
@@ -169,7 +154,7 @@ Check balance
 ./cysicmintd query bank balances $(./cysicmintd keys show validator-xxx --home ./cysicmint --keyring-backend test -a)
 ```
 
-\*\*\* Please contact the Cysic team to obtain testnet staking tokens \*\*\*
+<mark style="color:red;">\*\*\* Please contact the Cysic team to obtain mainnet staking tokens \*\*\*</mark>
 
 #### 2. Create Validator
 
@@ -181,7 +166,7 @@ Use the `stake-as-validator` command to create a validator and self-stake:
     --amount=100000000000000000000CGT \
     --moniker="james" \
     --details="james's validator"
-    --chain-id cysicmint_9001-1 \
+    --chain-id cysicmint_4399-1 \
     --commission-rate="0.05" \
     --commission-max-rate="0.20" \
     --commission-max-change-rate="0.01" \
@@ -216,7 +201,7 @@ Parameter description:
     --from validator-xxx \
     --home=./cysicmint \
     --keyring-backend test \
-    --chain-id cysicmint_9001-1 \
+    --chain-id cysicmint_4399-1 \
     --gas auto \
     --gas-adjustment 1.2 \
     --gas-prices=300000CYS
@@ -300,14 +285,14 @@ docker-compose up -d
     1000000000000000000CGT \
     --from validator \
     --keyring-backend test \
-    --chain-id cysicmint_9001-1
+    --chain-id cysicmint_4399-1
 
 # Withdraw rewards
 ./cysicmintd tx distribution withdraw-all-rewards \
     $(./cysicmintd keys show validator-xxx --keyring-backend test --bech=val -a) \
     --from validator \
     --keyring-backend test \
-    --chain-id cysicmint_9001-1
+    --chain-id cysicmint_4399-1
 ```
 
 ### Troubleshooting
