@@ -20,3 +20,5 @@
   * [How to bridge](tutorial-docs/how-to-bridge.md)
   * [Cysic Agent-to-Agent API](tutorial-docs/cysic-agent-to-agent-api.md)
   * [FAQs & Common Issues/Solutions](tutorial-docs/faqs-and-common-issues-solutions.md)
+* [Tec Docs](tec-docs/README.md)
+  * [Cysic Auction Mechanism](tec-docs/cysic-auction-mechanism.md)
