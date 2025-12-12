@@ -15,7 +15,6 @@
 * [Tutorial Docs](tutorial-docs/README.md)
   * [How to Run a Prover Node](tutorial-docs/how-to-run-a-prover-node.md)
   * [How to Run a Verifier Node](tutorial-docs/how-to-run-a-verifier-node.md)
-  * [How to Run a Validator node](tutorial-docs/how-to-run-a-validator-node.md)
   * [How to stake](tutorial-docs/how-to-stake.md)
   * [How to bridge](tutorial-docs/how-to-bridge.md)
   * [Cysic Agent-to-Agent API](tutorial-docs/cysic-agent-to-agent-api.md)
