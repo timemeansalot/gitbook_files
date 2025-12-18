@@ -1,4 +1,4 @@
-# How to stake
+# How to Stake
 
 Staking your CGT tokens allows you to earn passive rewards while helping secure the network. This guide walks you through the entire process, from connecting your wallet to delegating your tokens to a validator.
 
@@ -28,4 +28,10 @@ Staked CGT earns rewards based on the current APR (Annual Percentage Rate). Rewa
 
 ## Getting More CGT
 
-If you need to acquire CGT tokens, visit your Portal page and use the convert feature to swap other supported assets for CGT. Once the conversion is complete, the CGT will appear in your wallet and be ready for staking.
+If you need to acquire CGT tokens, visit your Portal page and use the convert feature to swap other supported assets for CGT. Once the conversion is complete, the CGT will appear in your wallet and be ready for staking. &#x20;
+
+## Unstake CGT
+
+To unstake your CGT tokens, visit the Portal page and use the Unstake feature. The unstaking process takes 21 days to complete. After unstaking, CGT tokens can be converted into CYS tokens.&#x20;
+
+Please note that only CGT tokens that were originally converted from CYS are eligible to be converted back to CYS. Any CGT tokens that were not converted from CYS cannot be converted back to CYS later.
