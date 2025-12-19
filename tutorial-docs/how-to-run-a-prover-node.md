@@ -41,9 +41,13 @@ Before proceeding, ensure your system meets the following minimum requirements:
 
     cd ~/cysic-prover/ && bash start.sh
     ```
-3.  Update the bid price field in the config.yaml file. You can adjust your **bid** price according to your machine price and reward policy to maximize your earnings.
+3. Update the bid price field in the config.yaml file. You can adjust your **bid** price according to your machine price and reward policy to maximize your earnings.
+   1. Lower the bid price to increase the likelihood of getting the prove task.
+   2.  Raise the bid price to increase the reward for completing a prove task.
 
-    <figure><img src="../.gitbook/assets/image-8 (1).png" alt=""><figcaption></figcaption></figure>
+
+
+       <figure><img src="../.gitbook/assets/image-8 (1).png" alt=""><figcaption></figcaption></figure>
 4.  Start the Prover Node service:
 
     ```bash
