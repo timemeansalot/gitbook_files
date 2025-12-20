@@ -103,6 +103,8 @@ After starting the Prover Node, complete the following mandatory steps:
 
 #### 5.3 Reserving CYS for Your Worker Node
 
+> A reserve of 1,000 CYS is required for each Prover Worker Node.
+
 To activate your Prover Node, follow these steps to reserve CYS tokens:
 
 1. **Access the Cysic Mainnet Portal**: Navigate to the official Cysic Mainnet Website: [https://app.cysic.xyz/prover](https://app.cysic.xyz/prover)
