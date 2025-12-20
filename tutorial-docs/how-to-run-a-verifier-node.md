@@ -104,7 +104,7 @@ To activate your Verifier Node, follow these steps to reserve CYS tokens:
 1. **Access the Cysic Mainnet Portal**: Navigate to the official Cysic Mainnet Website: [https://app.cysic.xyz/verifier](https://app.cysic.xyz/verifier)
 2.  **Authenticate Your Account**: Click the sign-in button and follow the prompts to authenticate.
 
-    <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 3.  **Connect Your Wallet**: Establish a connection between your wallet and the Cysic Mainnet Portal.<br>
 
     <figure><img src="../.gitbook/assets/image-2 (2).png" alt=""><figcaption></figcaption></figure>

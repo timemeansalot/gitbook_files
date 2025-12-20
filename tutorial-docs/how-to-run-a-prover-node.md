@@ -110,7 +110,7 @@ To activate your Prover Node, follow these steps to reserve CYS tokens:
 1. **Access the Cysic Mainnet Portal**: Navigate to the official Cysic Mainnet Website: [https://app.cysic.xyz/prover](https://app.cysic.xyz/prover)
 2.  **Authenticate Your Account**: Click the sign-in button and follow the prompts to authenticate.
 
-    <figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 3.  **Connect Your Wallet**: Establish a connection between your wallet and the Cysic Mainnet Portal.
 
     <figure><img src="../.gitbook/assets/image-1.png" alt=""><figcaption></figcaption></figure>
