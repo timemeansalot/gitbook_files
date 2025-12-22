@@ -139,3 +139,15 @@ To activate your Prover Node, follow these steps to reserve CYS tokens:
     ```
 
 **Important Note**: Ensure your Prover Node maintains a sufficient balance of CYS tokens to cover transaction fees when submitting proof generation results.
+
+
+
+## Appendix
+
+### (Optional) Nvidia 5090 Support
+
+The Nvidia 5090 card is supported. If you launched the Prover prior to 2025-12-22 and encountered an error, you may use the commands below to update the binary to be compatible with the 5090 GPU. For users launching the Prover on or after 2025-12-22, this step is unnecessary, as the new binary has been incorporated into `setup_prover.sh`.<br>
+
+```
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/moongate-server > ~/cysic-prover/host_cuda_prover
+```
