@@ -138,7 +138,7 @@ To activate your Prover Node, follow these steps to reserve CYS tokens:
     2025/12/08 02:58:27 received message:  {"code":0,"message":"your current worker address is: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775","respType":0,"data":null}
     ```
 
-**Important Note**: Ensure your Prover Node maintains a sufficient balance of CYS tokens to cover transaction fees when submitting proof generation results.
+**Important Note**: Ensure your each Prover Node _worker address_ maintains a sufficient balance of CYS tokens to cover transaction fees when submitting proof generation results.
 
 
 

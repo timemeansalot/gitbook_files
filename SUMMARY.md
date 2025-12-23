@@ -20,5 +20,6 @@
   * [Cysic Agent-to-Agent API](tutorial-docs/cysic-agent-to-agent-api.md)
   * [FAQs & Common Issues/Solutions](tutorial-docs/faqs-and-common-issues-solutions.md)
   * [How to claim CYS with your NFT](tutorial-docs/how-to-claim-cys-with-your-nft.md)
+  * [How to run a Cysic Validator Node](tutorial-docs/how-to-run-a-cysic-validator-node.md)
 * [Tec Docs](tec-docs/README.md)
   * [Cysic Auction Mechanism](tec-docs/cysic-auction-mechanism.md)
