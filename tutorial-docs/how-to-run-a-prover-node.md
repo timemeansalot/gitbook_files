@@ -29,6 +29,28 @@ Before proceeding, ensure your system meets the following minimum requirements:
 
     <figure><img src="../.gitbook/assets/14_rpc (2).png" alt=""><figcaption></figcaption></figure>
 
+***
+
+(**Optional**) Consider using a paid third-party RPC endpoint provider or hosting a self-built RPC server if RPC call latency significantly impacts proof generation time.
+
+1. Although the free RPC endpoint is capable of completing the task, the latency can be substantial. We recommend using a paid RPC endpoint or, if appropriate, hosting your own RPC endpoint. The physical distance between the RPC endpoint server and the proof-calculation server significantly impacts data fetch latency.
+2. To evaluate RPC endpoint latency, you can test with the following command:
+
+```bash
+time curl $YOUR_RPC_ENDPOINT_URL \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_getProof","params":["0x7F0d15C7FAae65896648C8273B6d7E43f58Fa842",["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"],"latest"],"id":1}'
+```
+
+3. For reference, we compared latency across several endpoints (free public endpoints vs. a self-hosted solution). The results are provided below:
+
+| endpoint                | latency |
+| ----------------------- | ------- |
+| Alchemy free endpoint   | 1.191 s |
+| QuickNode free endpoint | 1.656 s |
+| Self-hosted endpoint    | 0.013 s |
+
 ### 4. Deploying the Prover Node
 
 1. Launch your terminal application on Linux.
