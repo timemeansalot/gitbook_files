@@ -42,10 +42,7 @@ A task is published by the **Requester** with the following parameters:
 
 The total reward pool for provers is defined as: $$task\_reward\_prover = bid\_select \times task\_difficulty \times 80\%$$
 
-This reward is distributed based on completion speed among the three winning provers:
-
-* **Fastest prover**: 80% of task\_reward\_prover
-* **Second fastest**: 20%
+This reward is distributed among the three winning provers based on the verification results from verifiers.
 
 ### **6.2 Failure and Slashing**
 
