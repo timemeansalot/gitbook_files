@@ -100,8 +100,8 @@ docker compose pull
 Before starting the node, you need to update the `app.toml` configuration file:
 
 ```bash
-wget https://cysic-data-mainnet.s3.ap-southeast-1.amazonaws.com/cysic_data_mainnet_20251225.tar.gz
-tar -zxvf cysic_data_mainnet_20251225.tar.gz -C /data/mainnet/data
+wget https://cysic-data-mainnet.s3.ap-southeast-1.amazonaws.com/cysic_data_mainnet_20260123.tar.gz
+tar -zxvf cysic_data_mainnet_20260123.tar.gz -C /data/mainnet/data
 ```
 
 #### 3. Start Node
