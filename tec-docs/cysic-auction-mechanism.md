@@ -54,10 +54,13 @@ This reward is distributed among the three winning provers based on the verifica
 
 ### **6.3 Verifier Rewards**
 
-* **20 verifiers** are randomly selected to validate the proof.
-*   They share the remaining 20% of the task reward equally:
+* **20 verifiers** are randomly selected to validate the proof. The selection is determined by the block hash at task creation time, ensuring unpredictable and tamper-resistant randomness.
+*   The verification task concludes once 60% of the selected verifiers (i.e., at least 12) have submitted their results. Only those who successfully submit before the task closes will share the reward:
 
-    $$verifier\_reward = \frac{bid\_select \times task\_difficulty \times 20\%}{20}$$<br>
+    $$verifier\_reward = \frac{bid\_select \times task\_difficulty \times 20\%}{n_{submitted}}$$
+
+    where $$n_{submitted}$$is the number of verifiers who submitted in time.
+* **Note:** Since rewards are distributed only among verifiers who submit before task closure, maintaining low-latency network connectivity is essential for maximizing earnings.<br>
 
 ## **7.** **Reserve-Weighted Incentives**
 
